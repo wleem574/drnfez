@@ -1,106 +1,84 @@
-/* إعداد التصميم ليكون متجاوبًا مع الهواتف */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    color: #fff;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
 }
 
 .container {
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-}
-
-.login-box {
+    text-align: center;
     background: rgba(255, 255, 255, 0.1);
     padding: 30px;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    animation: fadeIn 1s ease-in-out;
+    width: 90%;
+    max-width: 400px;
 }
 
 .logo h1 {
-    font-size: 32px;
-    font-weight: bold;
+    font-size: 2.5rem;
     color: #ffdd57;
+    animation: glow 1.5s infinite alternate;
     margin-bottom: 20px;
 }
 
-.login-box h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.login-box p {
-    margin-bottom: 20px;
-    font-size: 14px;
-    opacity: 0.8;
+.welcome-text p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    animation: slideIn 2s ease-out;
 }
 
 input {
     width: 100%;
     padding: 12px;
-    margin-bottom: 15px;
+    margin: 10px 0;
     border: none;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 1rem;
     background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    color: white;
     outline: none;
-    transition: background 0.3s ease;
 }
 
-input:focus {
-    background: rgba(255, 255, 255, 0.3);
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 button {
     width: 100%;
     padding: 12px;
+    margin-top: 20px;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-    background: #1e90ff;
+    background-color: #ff6347;
+    font-size: 1rem;
+    color: white;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: background 0.3s;
 }
 
 button:hover {
-    background: #1c86ee;
+    background-color: #ff4500;
 }
 
-.action-btn {
-    background: #ff6347;
-    margin-top: 10px;
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #ffdd57, 0 0 20px #ffdd57;
+    }
+    to {
+        text-shadow: 0 0 20px #ffdd57, 0 0 30px #ffdd57;
+    }
 }
 
-.action-btn:hover {
-    background: #ff4500;
-}
-
-#message {
-    margin-top: 10px;
-    font-size: 14px;
-    text-align: center;
-    color: #ffdd57;
-}
-
-/* تأثيرات الحركة */
-@keyframes fadeIn {
+@keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(-20px);
     }
     to {
         opacity: 1;
