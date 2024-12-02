@@ -18,7 +18,7 @@ const auth = getAuth(app);
 
 // Login action with action://
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
-    e.preventDefault(); // منع السلوك الافتراضي
+    e.preventDefault(); // منع السلوك الافتراضي للنموذج
 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -32,14 +32,24 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         document.getElementById('message').textContent = `Welcome back, ${user.email}!`;
         document.getElementById('message').style.color = 'lightgreen';
 
-        // تفعيل ميزة action://
-        window.location.href = "action://login_success";
+        // محاولة فتح رابط action://
+        openActionURL("action://login_success");
     } catch (error) {
         // عرض رسالة خطأ
         document.getElementById('message').textContent = `Error: ${error.message}`;
         document.getElementById('message').style.color = 'red';
 
-        // تفعيل إجراء مختلف إذا فشل
-        window.location.href = "action://login_failure";
+        // محاولة فتح رابط action:// للفشل
+        openActionURL("action://login_failure");
     }
 });
+
+// دالة لفتح رابط action://
+function openActionURL(url) {
+    try {
+        // محاولة فتح الرابط مباشرة
+        window.location.href = url;
+    } catch (e) {
+        console.error(`Failed to execute action URL: ${url}`, e);
+    }
+}
