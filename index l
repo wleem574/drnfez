@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+        button {
+            background-color: #1e90ff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1c86ee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Users</h1>
+        <input type="text" id="userName" placeholder="Enter user name" />
+        <input type="email" id="userEmail" placeholder="Enter user email" />
+        <button id="addUserButton">Add User</button>
+        <h2>Users List</h2>
+        <ul id="usersList"></ul>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
+    <script>
+        // إعداد Firebase باستخدام الإعدادات المرسلة
+        const firebaseConfig = {
+            apiKey: "AIzaSyBMa1ZBBH6Xdi-MqqG4-B8z2oBtOzb3MfA",
+            authDomain: "drnfeez-c4037.firebaseapp.com",
+            databaseURL: "https://drnfeez-c4037-default-rtdb.firebaseio.com",
+            projectId: "drnfeez-c4037",
+            storageBucket: "drnfeez-c4037.firebasestorage.app",
+            messagingSenderId: "912450814298",
+            appId: "1:912450814298:web:2c1cd95abbda31e3a4b363"
+        };
+
+        // تهيئة التطبيق وقاعدة البيانات
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // إضافة مستخدم جديد إلى Firebase
+        document.getElementById('addUserButton').addEventListener('click', () => {
+            const userName = document.getElementById('userName').value;
+            const userEmail = document.getElementById('userEmail').value;
+
+            if (userName && userEmail) {
+                const newUserRef = db.ref('users').push();
+                newUserRef.set({
+                    name: userName,
+                    email: userEmail
+                }).then(() => {
+                    alert('User added successfully!');
+                    document.getElementById('userName').value = '';
+                    document.getElementById('userEmail').value = '';
+                }).catch((error) => {
+                    console.error('Error adding user:', error);
+                });
+            } else {
+                alert('Please enter both name and email!');
+            }
+        });
+
+        // قراءة قائمة المستخدمين من Firebase
+        const usersList = document.getElementById('usersList');
+        db.ref('users').on('value', (snapshot) => {
+            usersList.innerHTML = '';
+            snapshot.forEach((childSnapshot) => {
+                const user = childSnapshot.val();
+                const li = document.createElement('li');
+                li.textContent = `${user.name} (${user.email})`;
+                usersList.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>
