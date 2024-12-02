@@ -40,3 +40,23 @@ document.getElementById('loginForm').addEventListener('submit', (event) => {
 document.getElementById('actionButton').addEventListener('click', () => {
     alert('Action button clicked!');
 });
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+const auth = getAuth();
+document.getElementById('registerForm').addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            document.getElementById('message').style.color = 'lightgreen';
+            document.getElementById('message').textContent = `Account created for: ${user.email}`;
+        })
+        .catch((error) => {
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').textContent = `Error: ${error.message}`;
+        });
+});
