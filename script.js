@@ -60,3 +60,13 @@ document.getElementById('registerForm').addEventListener('submit', (event) => {
             document.getElementById('message').textContent = `Error: ${error.message}`;
         });
 });
+// تبديل العرض بين التسجيل وتسجيل الدخول
+document.getElementById('showLogin').addEventListener('click', () => {
+    document.getElementById('loginSection').style.display = 'block';
+    document.getElementById('registerSection').style.display = 'none';
+});
+
+document.getElementById('showRegister').addEventListener('click', () => {
+    document.getElementById('loginSection').style.display = 'none';
+    document.getElementById('registerSection').style.display = 'block';
+});
