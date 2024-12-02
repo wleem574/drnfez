@@ -17,20 +17,26 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 // Login action
-document.getElementById('loginForm').addEventListener('submit', (e) => {
-    e.preventDefault();
+document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault(); // منع السلوك الافتراضي مؤقتًا
 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            document.getElementById('message').textContent = `Welcome back, ${user.email}!`;
-            document.getElementById('message').style.color = 'lightgreen';
-        })
-        .catch((error) => {
-            document.getElementById('message').textContent = `Error: ${error.message}`;
-            document.getElementById('message').style.color = 'red';
-        });
+    try {
+        // تسجيل الدخول باستخدام Firebase
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // عرض رسالة نجاح
+        document.getElementById('message').textContent = `Welcome back, ${user.email}!`;
+        document.getElementById('message').style.color = 'lightgreen';
+
+        // بعد نجاح تسجيل الدخول، إرسال النموذج (تنفيذ الـ Action)
+        document.getElementById('loginForm').submit();
+    } catch (error) {
+        // عرض رسالة خطأ
+        document.getElementById('message').textContent = `Error: ${error.message}`;
+        document.getElementById('message').style.color = 'red';
+    }
 });
