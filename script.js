@@ -18,7 +18,7 @@ const auth = getAuth(app);
 
 // Login action
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
-    e.preventDefault(); // منع السلوك الافتراضي مؤقتًا
+    e.preventDefault(); // منع السلوك الافتراضي
 
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -32,8 +32,8 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         document.getElementById('message').textContent = `Welcome back, ${user.email}!`;
         document.getElementById('message').style.color = 'lightgreen';
 
-        // بعد نجاح تسجيل الدخول، إرسال النموذج (تنفيذ الـ Action)
-        document.getElementById('loginForm').submit();
+        // إعادة التوجيه يدويًا إلى الرابط المطلوب (بدلاً من الاعتماد على action)
+        window.location.href = "https://example.com/action-handler";
     } catch (error) {
         // عرض رسالة خطأ
         document.getElementById('message').textContent = `Error: ${error.message}`;
