@@ -3,50 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - drnfeez</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+    <title>Web App - DRNFEEZ</title>
+    <!-- تحميل ملف CSS من المستودع -->
+    <link rel="stylesheet" href="https://raw.githubusercontent.com/wleem574/drnfeez/main/styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="login-box">
-            <div class="logo">
-                <h1>drnfeez</h1>
-            </div>
-            <h1>Welcome Back</h1>
-            <p>Please log in to continue</p>
-            <form id="loginForm">
-                <input type="email" id="email" placeholder="Enter your email" required>
-                <input type="password" id="password" placeholder="Enter your password" required>
-                <button type="submit">Log In</button>
-            </form>
-            <button id="actionButton" class="action-btn">Action</button>
-            <p id="message"></p>
+        <div class="logo">
+            <h1>DRNFEEZ</h1>
         </div>
+        <div class="welcome-text">
+            <p>Welcome to DRNFEEZ! Please log in to continue.</p>
+        </div>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Enter your email" required>
+            <input type="password" id="password" placeholder="Enter your password" required>
+            <button type="submit" id="loginButton">Log In</button>
+        </form>
+        <p id="message"></p>
     </div>
-    <script src="script.js"></script>
+    <!-- تحميل ملف JavaScript من المستودع -->
+    <script src="https://raw.githubusercontent.com/wleem574/drnfeez/main/script.js" type="module"></script>
 </body>
 </html>
-<div class="toggle-buttons">
-    <button id="showLogin">Login</button>
-    <button id="showRegister">Register</button>
-</div>
-
-<div id="loginSection">
-    <!-- نموذج تسجيل الدخول -->
-    <form id="loginForm">
-        <input type="email" id="email" placeholder="Enter your email" required>
-        <input type="password" id="password" placeholder="Enter your password" required>
-        <button type="submit">Log In</button>
-    </form>
-</div>
-
-<div id="registerSection" style="display: none;">
-    <!-- نموذج تسجيل الحساب -->
-    <form id="registerForm">
-        <input type="email" id="registerEmail" placeholder="Enter your email" required>
-        <input type="password" id="registerPassword" placeholder="Enter your password" required>
-        <button type="submit">Register</button>
-    </form>
-</div>
