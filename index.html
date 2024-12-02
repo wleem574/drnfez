@@ -28,3 +28,25 @@
     <script src="script.js"></script>
 </body>
 </html>
+<div class="toggle-buttons">
+    <button id="showLogin">Login</button>
+    <button id="showRegister">Register</button>
+</div>
+
+<div id="loginSection">
+    <!-- نموذج تسجيل الدخول -->
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button type="submit">Log In</button>
+    </form>
+</div>
+
+<div id="registerSection" style="display: none;">
+    <!-- نموذج تسجيل الحساب -->
+    <form id="registerForm">
+        <input type="email" id="registerEmail" placeholder="Enter your email" required>
+        <input type="password" id="registerPassword" placeholder="Enter your password" required>
+        <button type="submit">Register</button>
+    </form>
+</div>
