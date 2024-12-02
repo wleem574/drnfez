@@ -16,7 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// Login action
+// Login action with action://
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault(); // منع السلوك الافتراضي
 
@@ -32,11 +32,14 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         document.getElementById('message').textContent = `Welcome back, ${user.email}!`;
         document.getElementById('message').style.color = 'lightgreen';
 
-        // إعادة التوجيه يدويًا إلى الرابط المطلوب (بدلاً من الاعتماد على action)
-        window.location.href = "https://example.com/action-handler";
+        // تفعيل ميزة action://
+        window.location.href = "action://login_success";
     } catch (error) {
         // عرض رسالة خطأ
         document.getElementById('message').textContent = `Error: ${error.message}`;
         document.getElementById('message').style.color = 'red';
+
+        // تفعيل إجراء مختلف إذا فشل
+        window.location.href = "action://login_failure";
     }
 });
