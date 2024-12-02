@@ -64,7 +64,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
     <script>
-        // إعداد Firebase باستخدام الإعدادات المرسلة
+        // إعداد Firebase مع توكن API Key المرسل
         const firebaseConfig = {
             apiKey: "AIzaSyBMa1ZBBH6Xdi-MqqG4-B8z2oBtOzb3MfA",
             authDomain: "drnfeez-c4037.firebaseapp.com",
@@ -85,7 +85,7 @@
             const userEmail = document.getElementById('userEmail').value;
 
             if (userName && userEmail) {
-                const newUserRef = db.ref('users').push();
+                const newUserRef = firebase.database().ref('users').push(); // تأكد من وجود firebase.database()
                 newUserRef.set({
                     name: userName,
                     email: userEmail
@@ -104,7 +104,7 @@
         // قراءة قائمة المستخدمين من Firebase
         const usersList = document.getElementById('usersList');
         db.ref('users').on('value', (snapshot) => {
-            usersList.innerHTML = '';
+            usersList.innerHTML = ''; // تفريغ القائمة
             snapshot.forEach((childSnapshot) => {
                 const user = childSnapshot.val();
                 const li = document.createElement('li');
